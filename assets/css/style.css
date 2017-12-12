@@ -1,0 +1,16 @@
+h1{
+    font-size: 100px;
+    font-family: 'Indie Flower', cursive;
+}
+
+#buttons, button{
+    font-family: 'Permanent Marker', cursive;
+    font-size:  40px;
+    margin:5px;
+    float: left;
+}
+
+input{
+    height: 60px;
+    width: 250px;
+}
