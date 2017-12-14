@@ -15,7 +15,7 @@
      </head>
      <body>
             <div class="jumbotron" style="text-align:center;">
-                    <h1 class="display-3" style="font-size:110px">Giphy</h1>
+                    <h1 class="display-3" style="font-size:110px">Emotions Giphy Page</h1><br>
                     <div class='row'>
                         <div class="col-sm-7">
                                <div id="buttons"></div>
@@ -23,26 +23,28 @@
                        
                         <div class="col-sm-5">
                                <input id='userInput'>
-                               <button id='addButton'>Add</button>
+                               <button id='addButton'>Add a New Giphy</button>
                            </div>
          </div>
         
          </div>
+         <div id="giphyPlace" ></div>
 
+<!--          
          <div class='row'>
                 <div class="col-sm-8">
                         <div id="giphyPlace" ></div>
                </div>
-            </div>
+            </div> -->
 
          
 
          <script>
           let apiKey = 'mGXUkk6sqAk5YSAWK1dfK9SNbNHpmzI6';
           var rating= 'rating=g'
-          var queryURL = "http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key="+apiKey+"&limit=5&"+rating;
+          // var queryURL = "http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key="+apiKey+"&limit=6&"+rating;
           
-          var qParameter=['happy','sad','angry','hungry','excited'];
+          var qParameter=['awkward','bored','hungry','happy','confused','sad'];
          // http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=mGXUkk6sqAk5YSAWK1dfK9SNbNHpmzI6&limit=5
      
          function refreshButtons(){
@@ -77,7 +79,7 @@
         $('#giphyPlace').empty();
       
       var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        gif + "&api_key=mGXUkk6sqAk5YSAWK1dfK9SNbNHpmzI6&limit=5";
+        gif + "&api_key=mGXUkk6sqAk5YSAWK1dfK9SNbNHpmzI6&limit=6";
        
 
                 
@@ -107,7 +109,7 @@
               animatedUrlArray.push(urlAnimated);
               stillUrlArray.push(urlStill);
         
-              var p = $("<p>").text("Rating: " + rating);
+              
 
             
               var gif = $("<img id='giphyImages'>");
@@ -116,29 +118,9 @@
               gif.attr("urlStill", results[i].images.fixed_height_still.url);
               gif.attr("urlAnimate", results[i].images.fixed_height.url);
               gif.attr("value", i);
+              var p = $("<p>").text("Rating: " + rating);
 
-           
-
-                // $(document).on("click", "#giphyImages", function(){
-   
-                //     var state = $(this).attr("data-state");
-
-                //     let gifValue = $(this).attr("value");
-                //     let urlStill = $(this).attr("urlStill");
-                //     let urlAnimated = $(this).attr("urlAnimate");
-                
-                    
-
-                //     if (state === "still") {
-                        
-                //         $(this).attr("src",  urlAnimated);
-                //         $(this).attr("data-state", "animate");
-                //     } else {
-                //         $(this).attr("src", urlStill);
-                //         $(this).attr("data-state", "still");
-                //     }
-                // });
-         
+          
               gifDiv.append(p);
               gifDiv.append(gif);
 
