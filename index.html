@@ -14,21 +14,24 @@
 
      </head>
      <body>
-         <h1 style="text-align:center">Giphy!</h1>
-         <div class='row'>
-             <div class="col-sm-7">
-                    <div id="buttons"></div>
-            </div>
-            
-             <div class="col-sm-5">
-                    <input id='userInput'>
-                    <button id='addButton'>Add</button>
-                </div>
+            <div class="jumbotron" style="text-align:center;">
+                    <h1 class="display-3" style="font-size:110px">Giphy</h1>
+                    <div class='row'>
+                        <div class="col-sm-7">
+                               <div id="buttons"></div>
+                       </div>
+                       
+                        <div class="col-sm-5">
+                               <input id='userInput'>
+                               <button id='addButton'>Add</button>
+                           </div>
+         </div>
+        
          </div>
 
          <div class='row'>
-                <div class="col-sm-10">
-                        <div id="giphyPlace"></div>
+                <div class="col-sm-8">
+                        <div id="giphyPlace" ></div>
                </div>
             </div>
 
@@ -57,9 +60,11 @@
         event.preventDefault();
         var newGiphyButton = $("#userInput").val().trim();
         qParameter.push(newGiphyButton);
-        $('#userInput').text("");
         refreshButtons();
       });
+
+
+
 
 
       refreshButtons();
@@ -68,14 +73,17 @@
       $(document).on("click", ".giphy", function(){
 
       var gif= $(this).attr("data-name");
-      console.log(gif);
+    
         $('#giphyPlace').empty();
       
       var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
         gif + "&api_key=mGXUkk6sqAk5YSAWK1dfK9SNbNHpmzI6&limit=5";
        
+
+                
+
         $.ajax({
-            url: queryURL,//+'&'+rating+'&q='+qParameter[0]
+            url: queryURL,
             method: "GET"
           })
          
@@ -83,8 +91,6 @@
         
             var results = response.data;
           
-          
-
         
           for (var i = 0; i < results.length; i++) {
 
@@ -93,8 +99,13 @@
               var gifDiv = $("<div class='item'>");
 
               var rating = results[i].rating;
+             
+              var urlStill = results[i].images.fixed_height_still.url;
+              var urlAnimated = results[i].images.fixed_height.url;
               var animatedUrlArray = [];
               var stillUrlArray = [];
+              animatedUrlArray.push(urlAnimated);
+              stillUrlArray.push(urlStill);
         
               var p = $("<p>").text("Rating: " + rating);
 
@@ -102,35 +113,31 @@
               var gif = $("<img id='giphyImages'>");
               gif.attr("src", results[i].images.fixed_height_still.url);
               gif.attr({'data-state': "still"});
+              gif.attr("urlStill", results[i].images.fixed_height_still.url);
+              gif.attr("urlAnimate", results[i].images.fixed_height.url);
               gif.attr("value", i);
 
-            animatedUrlArray.push(results[i].images.fixed_height.url);
-            stillUrlArray.push(results[i].images.fixed_height_still.url);
-            console.log(animatedUrlArray);
-               
+           
 
-                let urlStill = results[i].images.fixed_height_still.url;
-                let urlAnimated = results[i].images.fixed_height.url;
-
-                $(document).on("click", "#giphyImages", function(){
+                // $(document).on("click", "#giphyImages", function(){
    
-                    var state = $(this).attr("data-state");
-                    // gifValue = $('.img').val();
-                    // let urlStill = stillUrlArray[gifValue];
-                    // let urlAnimated = animatedUrlArray[gifValue];
-                    // console.log(gifValue);
+                //     var state = $(this).attr("data-state");
 
+                //     let gifValue = $(this).attr("value");
+                //     let urlStill = $(this).attr("urlStill");
+                //     let urlAnimated = $(this).attr("urlAnimate");
+                
+                    
 
-                    if (state === "still") {
+                //     if (state === "still") {
                         
-                        $(this).attr("src", urlAnimated);
-                        $(this).attr("data-state", "animate");
-                    } else {
-                        $(this).attr("src", urlStill);
-                        $(this).attr("data-state", "still");
-                    }
-                });
-
+                //         $(this).attr("src",  urlAnimated);
+                //         $(this).attr("data-state", "animate");
+                //     } else {
+                //         $(this).attr("src", urlStill);
+                //         $(this).attr("data-state", "still");
+                //     }
+                // });
          
               gifDiv.append(p);
               gifDiv.append(gif);
@@ -143,6 +150,27 @@
        
 
     });
+
+    $(document).on("click", "#giphyImages", function(){
+   
+                    var state = $(this).attr("data-state");
+
+                    let gifValue = $(this).attr("value");
+                    let urlStill = $(this).attr("urlStill");
+                    let urlAnimated = $(this).attr("urlAnimate");
+                
+                    
+
+                    if (state === "still") {
+                        
+                        $(this).attr("src",  urlAnimated);
+                        $(this).attr("data-state", "animate");
+                    } else {
+                        $(this).attr("src", urlStill);
+                        $(this).attr("data-state", "still");
+                    }
+                });
+    
 
    
          </script>
