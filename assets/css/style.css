@@ -4,6 +4,10 @@ h1{
     color: red;
 
 }
+span{
+    font-family: 'Indie Flower', cursive;
+    font-size: 30px;
+}
 
 #buttons, button{
     font-family: 'Permanent Marker', cursive;
