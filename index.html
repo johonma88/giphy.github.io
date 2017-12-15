@@ -47,29 +47,29 @@
           var qParameter=['awkward','bored','hungry','happy','confused','sad'];
          // http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=mGXUkk6sqAk5YSAWK1dfK9SNbNHpmzI6&limit=5
      
-         function refreshButtons(){
-         $("#buttons").empty();
-            for (var index=0; index<qParameter.length; index ++){
-             var giphyButton = $("<button>");
-            giphyButton.addClass("giphy");
-            giphyButton.attr("data-name", qParameter[index]);
-            giphyButton.text(qParameter[index]);
-            $('#buttons').append(giphyButton);
-         }};
+      //    function refreshButtons(){
+      //    $("#buttons").empty();
+      //       for (var index=0; index<qParameter.length; index ++){
+      //        var giphyButton = $("<button>");
+      //       giphyButton.addClass("giphy");
+      //       giphyButton.attr("data-name", qParameter[index]);
+      //       giphyButton.text(qParameter[index]);
+      //       $('#buttons').append(giphyButton);
+      //    }};
 
-         $("#addButton").on("click", function(event) {
+      //    $("#addButton").on("click", function(event) {
 
-        event.preventDefault();
-        var newGiphyButton = $("#userInput").val().trim();
-        qParameter.push(newGiphyButton);
-        refreshButtons();
-      });
+      //   event.preventDefault();
+      //   var newGiphyButton = $("#userInput").val().trim();
+      //   qParameter.push(newGiphyButton);
+      //   refreshButtons();
+      //   search();
+      //   $("#userInput").val('');
+
+      // });
 
 
-
-
-
-      refreshButtons();
+      // refreshButtons();
 
 
       $(document).on("click", ".giphy", function(){
@@ -132,6 +132,37 @@
        
 
     });
+
+    function refreshButtons(){
+         $("#buttons").empty();
+            for (var index=0; index<qParameter.length; index ++){
+             var giphyButton = $("<button>");
+            giphyButton.addClass("giphy");
+            giphyButton.attr("data-name", qParameter[index]);
+            giphyButton.text(qParameter[index]);
+            $('#buttons').append(giphyButton);
+         }};
+
+         $("#addButton").on("click", function(event) {
+
+        event.preventDefault();
+        var newGiphyButton = $("#userInput").val().trim();
+        qParameter.push(newGiphyButton);
+        refreshButtons();
+        $("#userInput").val(' ');
+        
+       $(document).ready(function(){
+        $('#giphyPlace').empty();
+         $('.giphy').trigger("click");
+
+       });
+
+
+
+      });
+
+
+      refreshButtons();
 
     $(document).on("click", "#giphyImages", function(){
    
