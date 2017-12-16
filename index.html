@@ -18,18 +18,22 @@
                     <h1 class="display-3" style="font-size:110px">Emotions Giphy Page</h1><br>
                     <span>Click on any emotion button to see the gif, then click on it to animate it.</span>
                     <div class='row'>
-                        <div class="col-sm-7">
+                        <div class="col-sm-9">
                                <div id="buttons"></div>
                        </div>
                        
-                        <div class="col-sm-5">
+                        <div class="col-sm-3">
                                <input id='userInput'>
-                               <button id='addButton'>Add a New Giphy</button>
+                               <button class="add" id='addButton'>Add a New Giphy</button>
                            </div>
          </div>
         
          </div>
-         <div id="giphyPlace" ></div>
+         <div class='row'>
+          <div class="col-sm-10">
+            <div id="giphyPlace" ></div>
+         </div>
+         
 
 
          
@@ -60,6 +64,8 @@
           })
          
           .done(function(response) {
+
+            
         
             var results = response.data;
           
@@ -105,7 +111,10 @@
             $('#buttons').append(giphyButton);
          }};
 
-         $("#addButton").on("click", function(event) {
+  
+  
+  
+   $("#addButton").on("click", function(event) {
 
         event.preventDefault();
         var newGiphyButton = $("#userInput").val().trim();
@@ -114,14 +123,8 @@
         $('#giphyPlace').empty();
         $("#userInput").val(' ');
         
-      //  $(document).ready(function(){
-      //   $('#giphyPlace').empty();
-      //    $('.giphy').trigger("click");
-
-      //  });
-
-
-
+        $('.giphy:last').trigger("click");
+        
       });
      
 

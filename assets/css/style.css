@@ -12,10 +12,12 @@ span{
 #buttons, button{
     font-family: 'Permanent Marker', cursive;
     font-size:  30px;
-    margin:5px;
+    margin:10px;
     float: left;
     color:white;
     background-color: rgba(245, 245, 245, 0);
+   
+   
     
 }
 
@@ -56,6 +58,7 @@ img{
     width: 400px;
     height: 200px;
     border: solid;
+    text-align: center;
 }
  
 .jumbotron{
@@ -71,4 +74,8 @@ p{
  body{
      background-color: black;
      background-image:  url(https://78.media.tumblr.com/fa4119f28a5186c78fd3819632d97ea5/tumblr_o7mo5bQqKD1ujcnnno1_500.gif);
+ }
+
+ #giphyPlace{
+    align-content: center;
  }
